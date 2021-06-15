@@ -203,7 +203,7 @@ public abstract class UploadTemplate implements UploadStrategy {
         String p = toBeRenamed.getParent();
         String filePath = p + File.separator + toFileNewName;
         File newFile = new File(filePath);
-        //修改文件名
+        //todo 修改文件名 windows下存在无法改名的问题，暂时使用copy代替，此处存在BUG使用rename改名失败，本地返回错误本地调用返回false，其他工具返回文件已经被进程占用
         FileUtil.copyFile(toBeRenamed, newFile);
         String md5 = com.example.upload.util.FileUtil.getMd5ByFile(newFile);
         fileUploadInfo.setUploadTime(LocalDateTime.now());
